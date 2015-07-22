@@ -1,5 +1,5 @@
 Name:		kerub
-Version:	0.0.1.SNAPSHOT
+Version:	master
 Release:	1%{?dist}
 Summary:	Kerub is an Infrastructure as a Service prototype
 
@@ -22,7 +22,7 @@ echo prep
 
 %build
 echo build
-make %{?_smp_mflags}
+mvn package
 
 
 %install

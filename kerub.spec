@@ -8,6 +8,7 @@ License:	Apache license 2.0
 URL:		https://github.com/K0zka/kerub
 Source0:	https://github.com/K0zka/kerub/archive/master.tar.gz
 
+BuildArch:	noarch
 BuildRequires:	maven
 Requires:	java-1.8
 
@@ -21,16 +22,16 @@ echo prep
 
 
 %build
-echo build
 mvn package
 
 
 %install
-%make_install
-
+mkdir -p $RPM_BUILD_ROOT/usr/share/kerub/
+install target/kerub*.war $RPM_BUILD_ROOT/usr/share/kerub/
 
 %files
 %doc
+/usr/share/kerub/kerub*.war
 
 
 

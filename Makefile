@@ -12,3 +12,5 @@ rpmdirs:
 
 sources: rpmdirs
 	spectool -g -R kerub.spec
+	#TODO: this looks like I am doing half of spectool's job
+	cp kerub.xml `rpm --eval "%{_sourcedir}"`

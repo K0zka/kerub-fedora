@@ -38,6 +38,8 @@ mvn package
 install -dm 755 %{buildroot}%{logdir}
 install -dm 755 %{buildroot}%{datadir}
 install -dm 755 %{buildroot}%{configdir}
+install -dm 755 %{buildroot}%{configdir}/local
+install -dm 755 %{buildroot}%{configdir}/config
 install -dm 755 %{buildroot}%{loc_configdir}
 install -dm 755 %{buildroot}%{cls_configdir}
 install -dm 755 %{buildroot}%{wardir}
@@ -46,11 +48,20 @@ install -dm 755 %{buildroot}%{_datadir}/jetty/etc
 install -pm 644 target/${name}*.war %{buildroot}%{wardir}/%{name}.war
 install -pm 644 %{_sourcedir}/kerub.xml %{buildroot}%{_datadir}/jetty/etc
 
+install -pm 644 %{_sourcedir}/shiro.ini %{buildroot}%{configdir}
+install -pm 644 %{_sourcedir}/kerub.properties.local %{buildroot}%{configdir}/local/kerub.properties
+install -pm 644 %{_sourcedir}/kerub.properties.cluster %{buildroot}%{configdir}/cluster/kerub.properties
+
 %files
 %doc
 %{_datadir}/kerub/kerub.war
 %{_datadir}/jetty/etc/kerub.xml
 /etc/kerub
+/etc/kerub/shiro.ini
+/etc/kerub/local
+/etc/kerub/local/kerub.properties
+/etc/kerub/cluster
+/etc/kerub/cluster/kerub.properties
 
 %changelog
 

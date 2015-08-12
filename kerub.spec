@@ -56,12 +56,12 @@ install -pm 644 %{_sourcedir}/kerub.properties.cluster %{buildroot}%{configdir}/
 %doc
 %{_datadir}/kerub/kerub.war
 %{_datadir}/jetty/etc/kerub.xml
-/etc/kerub
-/etc/kerub/shiro.ini
-/etc/kerub/local
-/etc/kerub/local/kerub.properties
-/etc/kerub/cluster
-/etc/kerub/cluster/kerub.properties
+%{configdir}
+%{configdir}/shiro.ini
+%{configdir}/local
+%{configdir}/local/kerub.properties
+%{configdir}/cluster
+%{configdir}/cluster/kerub.properties
 
 %changelog
 

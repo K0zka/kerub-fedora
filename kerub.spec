@@ -62,6 +62,7 @@ install -pm 644 %{_sourcedir}/kerub.properties.cluster %{buildroot}%{configdir}/
 %{configdir}/local/kerub.properties
 %{configdir}/cluster
 %{configdir}/cluster/kerub.properties
+%{datadir}
 
 %changelog
 

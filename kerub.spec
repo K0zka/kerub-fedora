@@ -19,7 +19,7 @@ Source2:	kerub.xml
 
 BuildArch:	noarch
 BuildRequires:	maven
-Requires:	java-1.8,jetty
+Requires:	java-1.8.0-openjdk-headless,jetty
 
 %description
 Kerub is an Infrastructure as a Service prototype project to demonstrate

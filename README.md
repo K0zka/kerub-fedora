@@ -6,7 +6,15 @@
 
 * By default jetty does not start on fedora at all, the system adminstrator have to enable httpd_execmem in selinux\
 ```
-setsebool httpd_execmem 1
+setsebool -P httpd_execmem 1
+```
+* Kerub module needs to be enabled in jetty
+```
+echo --module=kerub >> /usr/share/jetty/start.ini
 ```
 
+* Optionally, set jetty autostart
+```
+sysctl enable jetty
+```
 

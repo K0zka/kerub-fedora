@@ -9,7 +9,8 @@
 	<Set name="war">/usr/share/kerub/kerub.war</Set>
 	<Set name="extractWAR">true</Set>
 	<Set name="copyWebDir">false</Set>
-	<Set name="extraClasspath">/etc/kerub/</Set>
+	<!-- must be relative to jetty's home (f) -->
+	<Set name="extraClasspath">../../../etc/kerub/</Set>
       </New>
     </Arg>
   </Call>

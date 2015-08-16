@@ -35,7 +35,7 @@ mvn package
 
 
 %install
-install -dm 755 %{buildroot}%{logdir}
+install -dm 775 %{buildroot}%{logdir}
 install -dm 755 %{buildroot}%{datadir}
 install -dm 755 %{buildroot}%{configdir}
 install -dm 755 %{buildroot}%{configdir}/local
@@ -44,11 +44,15 @@ install -dm 755 %{buildroot}%{loc_configdir}
 install -dm 755 %{buildroot}%{cls_configdir}
 install -dm 755 %{buildroot}%{wardir}
 install -dm 755 %{buildroot}%{_datadir}/jetty/etc
+install -dm 755 %{buildroot}%{_datadir}/jetty/modules
 
 install -pm 644 target/${name}*.war %{buildroot}%{wardir}/%{name}.war
 install -pm 644 %{_sourcedir}/kerub.xml %{buildroot}%{_datadir}/jetty/etc
+install -pm 644 %{_sourcedir}/kerub.mod %{buildroot}%{_datadir}/jetty/modules
 
 install -pm 644 %{_sourcedir}/shiro.ini %{buildroot}%{configdir}
+install -pm 644 %{_sourcedir}/logback.xml %{buildroot}%{configdir}
+install -pm 644 %{_sourcedir}/keystore.jks %{buildroot}%{configdir}
 install -pm 644 %{_sourcedir}/kerub.properties.local %{buildroot}%{configdir}/local/kerub.properties
 install -pm 644 %{_sourcedir}/kerub.properties.cluster %{buildroot}%{configdir}/cluster/kerub.properties
 
@@ -56,13 +60,17 @@ install -pm 644 %{_sourcedir}/kerub.properties.cluster %{buildroot}%{configdir}/
 %doc
 %{_datadir}/kerub/kerub.war
 %{_datadir}/jetty/etc/kerub.xml
+%{_datadir}/jetty/modules/kerub.mod
 %{configdir}
 %{configdir}/shiro.ini
+%{configdir}/logback.xml
+%{configdir}/keystore.jks
 %{configdir}/local
 %{configdir}/local/kerub.properties
 %{configdir}/cluster
 %{configdir}/cluster/kerub.properties
 %{datadir}
+%attr(0774, root, jetty) %{logdir}
 
 %changelog
 

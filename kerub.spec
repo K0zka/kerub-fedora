@@ -62,13 +62,13 @@ install -pm 644 %{_sourcedir}/kerub.properties.cluster %{buildroot}%{configdir}/
 %{_datadir}/jetty/etc/kerub.xml
 %{_datadir}/jetty/modules/kerub.mod
 %{configdir}
-%{configdir}/shiro.ini
-%{configdir}/logback.xml
-%{configdir}/keystore.jks
+%config(noreplace) %{configdir}/shiro.ini
+%config(noreplace) %{configdir}/logback.xml
+%config(noreplace) %{configdir}/keystore.jks
 %{configdir}/local
-%{configdir}/local/kerub.properties
+%config(noreplace) %{configdir}/local/kerub.properties
 %{configdir}/cluster
-%{configdir}/cluster/kerub.properties
+%config(noreplace) %{configdir}/cluster/kerub.properties
 %attr(0774, root, jetty) %{datadir}
 %attr(0774, root, jetty) %{logdir}
 

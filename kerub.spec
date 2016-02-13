@@ -4,6 +4,7 @@
 %global loc_configdir	%{_sysconfdir}/%{name}/local
 %global cls_configdir	%{_sysconfdir}/%{name}/cluster
 %global wardir		%{_datadir}/%{name}
+%global selinuxdir	%{_datadir}/selinux/targeted
 
 
 Name:		kerub
@@ -18,8 +19,8 @@ Source0:	https://github.com/K0zka/%{name}/archive/%{version}.tar.gz
 Source2:	kerub.xml
 
 BuildArch:	noarch
-BuildRequires:	maven
-Requires:	java-1.8.0-openjdk-headless,jetty
+BuildRequires:	maven,selinux-policy-devel
+Requires:	java-1.8.0-openjdk-headless,jetty,jboss-websocket-1.0-api
 
 %description
 Kerub is an Infrastructure as a Service prototype project to demonstrate
@@ -33,10 +34,10 @@ echo prep
 %build
 mvn package
 
-
 %install
 install -dm 775 %{buildroot}%{logdir}
 install -dm 755 %{buildroot}%{datadir}
+install -dm 755 %{buildroot}%{selinuxdir}
 install -dm 755 %{buildroot}%{configdir}
 install -dm 755 %{buildroot}%{configdir}/local
 install -dm 755 %{buildroot}%{configdir}/config
@@ -55,6 +56,7 @@ install -pm 644 %{_sourcedir}/logback.xml %{buildroot}%{configdir}
 install -pm 644 %{_sourcedir}/keystore.jks %{buildroot}%{configdir}
 install -pm 644 %{_sourcedir}/kerub.properties.local %{buildroot}%{configdir}/local/kerub.properties
 install -pm 644 %{_sourcedir}/kerub.properties.cluster %{buildroot}%{configdir}/cluster/kerub.properties
+install -pm 644 %{_sourcedir}/kerub.pp %{buildroot}%{selinuxdir}
 
 %files
 %doc
@@ -71,6 +73,13 @@ install -pm 644 %{_sourcedir}/kerub.properties.cluster %{buildroot}%{configdir}/
 %config(noreplace) %{configdir}/cluster/kerub.properties
 %attr(0774, root, jetty) %{datadir}
 %attr(0774, root, jetty) %{logdir}
+%{selinuxdir}/kerub.pp
+
+%post
+semodule -i %{selinuxdir}/kerub.pp
+
+%postun
+semodule -r kerub
 
 %changelog
 

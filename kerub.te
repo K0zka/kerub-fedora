@@ -1,0 +1,20 @@
+
+module kerub 1.0;
+
+require {
+	type unreserved_port_t;
+	type var_log_t;
+	type jetty_t;
+	type sysctl_net_t;
+	class dir search;
+	class file { open read getattr create };
+	class tcp_socket name_bind;
+}
+
+#============= jetty_t ==============
+allow jetty_t sysctl_net_t:dir search;
+allow jetty_t sysctl_net_t:file { read getattr };
+
+#!!!! This avc can be allowed using the boolean 'nis_enabled'
+allow jetty_t unreserved_port_t:tcp_socket name_bind;
+allow jetty_t var_log_t:file { create read open };

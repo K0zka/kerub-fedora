@@ -77,9 +77,12 @@ install -pm 644 %{_sourcedir}/kerub.pp %{buildroot}%{selinuxdir}
 
 %post
 semodule -i %{selinuxdir}/kerub.pp
+echo --module=kerub >> %{_datadir}/jetty/start.ini
 
 %postun
 semodule -r kerub
+mv %{_datadir}/jetty/start.ini %{_datadir}/jetty/start.ini.bak
+grep -v kerub %{_datadir}/jetty/start.ini.bak > %{_datadir}/jetty/start.ini
 
 %changelog
 

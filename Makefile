@@ -16,7 +16,6 @@ sources: rpmdirs
 	cp kerub.xml `rpm --eval "%{_sourcedir}"`
 	cp kerub.pp `rpm --eval "%{_sourcedir}"`
 	cp kerub.mod `rpm --eval "%{_sourcedir}"`
-	cp -r policies `rpm --eval "%{_sourcedir}"`
 	cp keystore.jks `rpm --eval "%{_sourcedir}"`
 	cp shiro.ini `rpm --eval "%{_sourcedir}"`
 	cp logback.xml `rpm --eval "%{_sourcedir}"`

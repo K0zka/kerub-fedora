@@ -9,7 +9,7 @@
 
 Name:		kerub
 Version:	master
-Release:	0.1
+Release:	0.2
 Summary:	Kerub is an Infrastructure as a Service prototype
 
 Group:		Cloud Management Tools

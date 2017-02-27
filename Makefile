@@ -1,6 +1,7 @@
 
 clean:
 	rpmdev-wipetree
+	rm -f kerub.spec
 
 all: rpms
 
